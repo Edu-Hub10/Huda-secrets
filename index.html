@@ -1,103 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Huda Secrets</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-    }
-    .container {
-      width: 300px;
-      margin: 100px auto;
-      padding: 20px;
-      background-color: #333;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      text-align: center;
-    }
-    h2 {
-      margin-bottom: 20px;
-    }
-    .btn {
-      background-color: #007BFF;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 20px;
-    }
-    .btn:hover {
-      background-color: #0056b3;
-    }
-  </style>
+    <title>Huda Secrets Registration</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        h2 {
+            text-align: center;
+        }
+        label, input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Welcome to Huda Secrets</h2>
-    <p>Register now to discover more.</p>
-    <a href="register.html" class="btn">Register</a>
-  </div>
+    <div class="container">
+        <h2>Huda Secrets Registration</h2>
+        <form id="registrationForm">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required><br>
+            <label for="username">Gmail:</label>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
 
-  <script>
-    // JavaScript for handling registration form submission
-    document.getElementById('registrationForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      var fullname = document.getElementById('fullname').value;
-      var username = document.getElementById('username').value;
-      var password = document.getElementById('password').value;
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var fullname = document.getElementById('fullname').value;
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
 
-      var data = {
-        fullname: fullname,
-        username: username,
-        password: password
-      };
+            var data = {
+                fullname: fullname,
+                username: username,
+                password: password
+            };
 
-      fetch('https://api.github.com/repos/<huda482>/<Huda-secrets>/contents/data/users.json', {
-        method: 'GET',
-        headers: {
-          'Authorization': 'token <your_personal_access_token>',
-          'Accept': 'application/vnd.github.v3+json'
-        }
-      })
-      .then(response => response.json())
-      .then(json => {
-        var content = JSON.parse(atob(json.content));
-        content.push(data);
+            fetch('https://api.github.com/repos/<huda482>/<Huda-secrets>/contents/data/users.json', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'token <your_personal_access_token>',
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                var content = JSON.parse(atob(json.content));
+                content.push(data);
 
-        return fetch('https://api.github.com/repos/<huda482>/<Huda-secrets>/contents/data/users.json', {
-          method: 'PUT',
-          headers: {
-            'Authorization': 'token <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>',
-            'Accept': 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify({
-            message: 'New user registration',
-            content: btoa(JSON.stringify(content)),
-            sha: json.sha
-          })
+                return fetch('https://api.github.com/repos/<huda482>/<Huda-secrets>/contents/data/users.json', {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': 'token <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>',
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify({
+                        message: 'New user registration',
+                        content: btoa(JSON.stringify(content)),
+                        sha: json.sha
+                    })
+                });
+            })
+            .then(response => {
+                if(response.ok) {
+                    alert('Registration successful!');
+                } else {
+                    alert('Registration failed.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
         });
-      })
-      .then(response => {
-        if(response.ok) {
-          alert('Registration successful!');
-          window.location.href = 'login.html'; // Redirect to login page after successful registration
-        } else {
-          alert('Registration failed.');
-        }
-      })
-      .catch(error => console.error('Error:', error));
-    });
-  </script>
+    </script>
 </body>
-</html>
-
 </html>
 
