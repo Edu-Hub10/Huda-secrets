@@ -9,7 +9,8 @@ $file = fopen("users.txt", "a");
 fwrite($file, "Full Name: $fullname, Email: $user_email, Password: $user_password\n");
 fclose($file);
 
-// إعادة توجيه المستخدم إلى صفحة redirect
-header("Location: http://hudasecrets.free.nf/redirect.html");
-exit();
+// رسالة تأكيد التسجيل
+echo "<h2 style='color: white; text-align: center;'>Registration Successful!</h2>";
+echo "<p style='color: white; text-align: center;'>Thank you for registering, $fullname. <a href='index.html' style='color: #007BFF;'>Go back to the registration page</a></p>";
 ?>
+
