@@ -1,3 +1,16 @@
+
+نعم، بما أنك تستخدم GitHub Pages ولا يدعم PHP، يمكنك استبدال وظائف PHP بجافا سكريبت لحفظ بيانات المستخدمين في ملف JSON داخل مستودع GitHub. سنستخدم GitHub API لإتمام هذه العملية.
+
+خطوات الإعداد
+1. إعداد مستودع GitHub
+إنشاء مستودع جديد على GitHub:
+اذهب إلى GitHub وأنشئ مستودعًا جديدًا، سمِّه مثلاً hudasecrets.
+أنشئ ملفًا جديدًا داخل المستودع، قم بإنشاء دليل يسمى data وأضف ملفًا جديدًا اسمه users.json داخل هذا الدليل. ضع في الملف المصفوفة الفارغة: [].
+2. إنشاء صفحة HTML مع JavaScript
+إنشاء صفحة HTML تفاعلية:
+أنشئ ملف index.html واكتب فيه الكود التالي:
+html
+Copy code
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +58,7 @@
 <body>
     <div class="container">
         <h2>Huda Secrets Registration</h2>
-        <form action="register.php" method="post">
+        <form id="registrationForm">
             <label for="fullname">Full Name:</label>
             <input type="text" id="fullname" name="fullname" required><br>
             <label for="username">Gmail:</label>
@@ -55,5 +68,55 @@
             <input type="submit" value="Register">
         </form>
     </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var fullname = document.getElementById('fullname').value;
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            var data = {
+                fullname: fullname,
+                username: username,
+                password: password
+            };
+
+            fetch('https://api.github.com/repos/<huda482>/<Huda-secrets>/contents/data/users.json', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'token <your_personal_access_token>',
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                var content = JSON.parse(atob(json.content));
+                content.push(data);
+
+                return fetch('https://api.github.com/repos/huda482>/<Huda-secrets>/contents/data/users.json', {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': 'token <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>',
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify({
+                        message: 'New user registration',
+                        content: btoa(JSON.stringify(content)),
+                        sha: json.sha
+                    })
+                });
+            })
+            .then(response => {
+                if(response.ok) {
+                    alert('Registration successful!');
+                } else {
+                    alert('Registration failed.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>
