@@ -8,13 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            emailjs.init("5eIVIFEyplQrYKk0l"); // معرّف المستخدم الخاص بك
+            emailjs.init("5eIVIFEyplQrYKk0l"); // معرّف المستخدم الخاص بك (Public API Key)
         })();
         
         function sendEmail(event) {
             event.preventDefault();
 
-            emailjs.sendForm('service_tix42ge', 'template_kutj2z9', event.target) // استبدل YOUR_SERVICE_ID و YOUR_TEMPLATE_ID بالقيم المناسبة
+            emailjs.sendForm('service_tix42ge', 'template_kutj2z9', event.target) // استبدل معرف الخدمة ومعرف القالب المناسبين
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     window.location.href = 'thankyou.html';
@@ -39,6 +39,7 @@
     </main>
 </body>
 </html>
+
 
 
 
