@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Spotify Style</title>
+    <title>Login - Instagram Style</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -12,7 +12,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f8f9fa; /* لون الخلفية */
+            background-color: #fafafa; /* لون خلفية الصفحة */
             font-family: Arial, sans-serif;
         }
 
@@ -21,41 +21,42 @@
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* ظل */
-            width: 400px; /* عرض الحاوية */
+            width: 350px; /* عرض الحاوية */
             text-align: center;
         }
 
         .logo-placeholder img {
-            width: 100px; /* حجم اللوجو */
+            width: 200px; /* حجم اللوجو */
             margin-bottom: 20px;
         }
 
         .login-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #1db954; /* لون زر تسجيل الدخول */
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #3897f0; /* لون زر تسجيل الدخول */
             color: #ffffff;
             text-decoration: none;
-            border-radius: 30px;
-            transition: background-color 0.3s ease;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             margin-top: 20px;
+            transition: background-color 0.3s ease;
         }
 
         .login-button:hover {
-            background-color: #1ed760; /* لون زر تسجيل الدخول عند التحويم */
+            background-color: #1675c1; /* لون الزر عند التحويم */
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 20px;
-            color: #191414; /* لون النص الرئيسي */
+            color: #262626; /* لون العنوان الرئيسي */
         }
 
         p {
-            color: #666666; /* لون النص الفرعي */
+            color: #999999; /* لون النص الفرعي */
             margin-bottom: 20px;
             line-height: 1.5;
         }
@@ -64,12 +65,11 @@
 <body>
     <div class="login-container">
         <div class="logo-placeholder">
-            <img src="Untitled_logo_1_free-file (1).jpg" alt="Spotify Logo">
+            <img src="instagram-logo.png" alt="Instagram Logo">
         </div>
-        <h1>Welcome to Huda Secrets Website</h1>
-        <p>Everyone Will Get Exposed After 100 Logins</p>
-        <p>Make Sure To Put The Correct Information</p>
-        <a href="login.html" class="login-button">Login</a>
+        <h1>Welcome to Instagram</h1>
+        <p>Log in to see photos and videos from your friends.</p>
+        <a href="login.html" class="login-button">Log In</a>
     </div>
 </body>
 </html>
